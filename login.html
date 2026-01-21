@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Secure Access</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&family=Oswald:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --c-bg: #050505;
+            --c-card: #0f0f0f;
+            --c-text: #e0e0e0;
+            --c-red: #ff0038;
+            --c-pink: #ff3399;
+        }
+        body { 
+            background-color: var(--c-bg); 
+            color: var(--c-text);
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center; 
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem; /* Smaller global font */
+        }
+        .login-box {
+            width: 100%;
+            max-width: 360px; /* Slimmer card */
+            padding: 2rem;
+            background: var(--c-card);
+            border: 1px solid #222;
+        }
+        .hero-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem; /* Reduced size */
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: white;
+        }
+        .form-control {
+            background-color: #000;
+            border: 1px solid #333;
+            color: white;
+            padding: 10px; /* Smaller padding */
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            border-radius: 0;
+        }
+        .form-control:focus {
+            background-color: #000;
+            border-color: var(--c-pink);
+            color: white;
+            box-shadow: none;
+        }
+        .btn-main {
+            background: linear-gradient(90deg, var(--c-red), var(--c-pink));
+            border: none;
+            color: white;
+            font-weight: 500;
+            padding: 10px;
+            width: 100%;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+        .btn-main:hover { opacity: 0.9; color: white; }
+        
+        .footer-brand {
+            margin-top: auto;
+            padding: 20px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.7rem; /* Tiny footer */
+            color: #333; /* Very subtle */
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h1 class="hero-text text-center">System Access</h1>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-danger p-2 mb-3 small" style="background:transparent; border:1px solid var(--c-red); color:var(--c-red);">{{ messages[0] }}</div>
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <input type="text" name="username" class="form-control" placeholder="Username" required>
+            <input type="password" name="password" class="form-control" placeholder="Password" required>
+            <button type="submit" class="btn-main">Login</button>
+        </form>
+    </div>
+
+    <div class="footer-brand">POWERED BY #MECS</div>
+</body>
+</html>
